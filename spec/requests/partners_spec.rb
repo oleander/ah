@@ -45,6 +45,9 @@ describe PartnersController, type: :controller do
         request.materials.each do |material|
           create(:experience, partner:, material:)
         end
+
+        # Ensures the request contains a subset of the partner's materials
+        create(:experience, partner:)
       end
 
       # Missing materials, but within range

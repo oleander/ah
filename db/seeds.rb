@@ -24,6 +24,8 @@ p4 = create(:partner, lng: request.lng * 2, lat: request.lat * 2, operating_radi
   request.materials.each do |material|
     create(:experience, partner:, material:)
   end
+
+  create(:experience, partner:)
 end
 
 # Missing materials, but within range
