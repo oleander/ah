@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 describe PartnersController, type: :controller do
@@ -16,7 +18,7 @@ describe PartnersController, type: :controller do
         "operating_radius" => be_a(Integer),
         "rating" => be_a(Integer),
         "lng" => be_a(String),
-        "lat" => be_a(String),
+        "lat" => be_a(String)
       })
     end
 
@@ -41,7 +43,7 @@ describe PartnersController, type: :controller do
     before do
       [p1, p2, p3, p4].each do |partner|
         request.materials.each do |material|
-          create(:experience, partner: partner, material: material)
+          create(:experience, partner:, material:)
         end
       end
 

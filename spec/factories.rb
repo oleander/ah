@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :material do
     sequence(:name) { |n| Faker::Construction.material + n.to_s }

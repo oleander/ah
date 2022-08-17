@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 RSpec.describe Material do
@@ -6,7 +8,7 @@ RSpec.describe Material do
       material = create(:material)
       expect(material).to be_valid
       material2 = build(:material, name: material.name)
-      expect(material2).to_not be_valid
+      expect(material2).not_to be_valid
     end
   end
 

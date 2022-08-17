@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 describe Request do
@@ -24,18 +26,18 @@ describe Request do
 
       context "when partners does not contain a subset of required materials" do
         before do
-          create(:requirement, request: request, material: material1)
-          create(:experience, partner: partner, material: material2)
+          create(:requirement, request:, material: material1)
+          create(:experience, partner:, material: material2)
         end
 
-        it { is_expected.to_not have_attributes(partners: include(partner)) }
+        it { is_expected.not_to have_attributes(partners: include(partner)) }
       end
 
       context "when partners does contain a subset of required materials" do
         before do
-          create(:requirement, request: request, material: material1)
-          create(:experience, partner: partner, material: material1)
-          create(:experience, partner: partner, material: material2)
+          create(:requirement, request:, material: material1)
+          create(:experience, partner:, material: material1)
+          create(:experience, partner:, material: material2)
         end
 
         it { is_expected.to have_attributes(partners: include(partner)) }
@@ -44,13 +46,14 @@ describe Request do
 
     context "when partner lives outside of the request location" do
       subject(:request) { create(:request, lat: 0, lng: 0) }
+
       let(:partner) { create(:partner, lat: 1, lng: 1, operating_radius: max_distance / 2.0) }
 
       context "when partners does contain a subset of required materials" do
         before do
-          create(:requirement, request: request, material: material1)
-          create(:experience, partner: partner, material: material1)
-          create(:experience, partner: partner, material: material2)
+          create(:requirement, request:, material: material1)
+          create(:experience, partner:, material: material1)
+          create(:experience, partner:, material: material2)
         end
 
         it { is_expected.not_to have_attributes(partners: include(partner)) }
@@ -59,13 +62,14 @@ describe Request do
 
     context "when partner lives outside of the request location" do
       subject(:request) { create(:request, lat: 0, lng: 0) }
+
       let(:partner) { create(:partner, lat: 1, lng: 1, operating_radius: max_distance * 2.0) }
 
       context "when partners does contain a subset of required materials" do
         before do
-          create(:requirement, request: request, material: material1)
-          create(:experience, partner: partner, material: material1)
-          create(:experience, partner: partner, material: material2)
+          create(:requirement, request:, material: material1)
+          create(:experience, partner:, material: material1)
+          create(:experience, partner:, material: material2)
         end
 
         it { is_expected.to have_attributes(partners: include(partner)) }
