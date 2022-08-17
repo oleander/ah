@@ -2,7 +2,8 @@ class Request < ApplicationRecord
   validates :phone_number, presence: true
   validates :area, numericality: { greater_than_or_equal_to: 0 }
 
-  acts_as_geolocated lat: "lat", lng: "lng"
+  validates :lat, presence: true
+  validates :lng, presence: true
 
   has_many :requirements, dependent: :destroy
   has_many :materials, through: :requirements
