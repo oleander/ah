@@ -1,4 +1,4 @@
-# README [![Ruby on Rails CI](https://github.com/oleander/ah/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/oleander/ah/actions/workflows/rubyonrails.yml)
+# AroundHome [![Ruby on Rails CI](https://github.com/oleander/ah/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/oleander/ah/actions/workflows/rubyonrails.yml)
 
 * Requirements
   * Ruby 3.1
