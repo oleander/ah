@@ -1,0 +1,40 @@
+name: AroundHome
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      GEMFILE_RUBY_VERSION: 3.1.0p0
+      PGHOST: localhost
+      PGUSER: postgres
+      TZ: "Europe/Berlin"
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ""
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        # Needed because the postgres container does not provide a healthcheck
+        options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+          bundler-cache: true
+      - name: Create DB
+        run: bin/rails db:prepare
+      - name: Run tests
+        run: bundle exec rspec
