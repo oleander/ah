@@ -7,7 +7,7 @@
 * Installation
   * `bundle install`
   * `bundle exec rails db:create db:migrate`
-  * `bundle exec rails db:seed` (TODO)
+  * `bundle exec rails db:seed`
   * `bundle exec rails server`
   * Open
     * http://localhost:3000/partners/1
@@ -21,6 +21,3 @@
   * Geo indexes on `lat` and `lng`
   * Authentication
   * Caching
-
-* TODO
-  * Use rubocop to enforce style
