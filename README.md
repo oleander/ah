@@ -22,3 +22,49 @@
   * Geo indexes on `lat` and `lng`
   * Authentication
   * Caching
+
+## Solution in a nutshell
+
+Where `10.0` and `20.0` are placeholder latitude and longitude of a request.
+
+``` sql
+    SELECT
+        partners.*,
+        earth_distance(
+          ll_to_earth(partners.lat, partners.lng),
+          ll_to_earth(10.0, 20.0)
+        ) AS distance
+    FROM
+        "partners"
+    INNER JOIN
+        "experiences"
+            ON "experiences"."partner_id" = "partners"."id"
+    INNER JOIN
+        "materials"
+            ON "materials"."id" = "experiences"."material_id"
+    WHERE
+        "materials"."id" IN (
+            SELECT
+                "materials"."id"
+            FROM
+                "materials"
+            INNER JOIN
+                "requirements"
+                    ON "materials"."id" = "requirements"."material_id"
+            WHERE
+                "requirements"."request_id" = $1
+        )
+    GROUP BY
+        "partners"."id"
+    HAVING
+        (
+            earth_distance(
+              ll_to_earth(partners.lat, partners.lng),
+              ll_to_earth(10.0, 20.0)
+            ) <= partners.operating_radius
+        )
+    ORDER BY
+        rating DESC,
+        distance ASC
+```
+
