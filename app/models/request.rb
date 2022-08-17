@@ -16,11 +16,12 @@ class Request < ApplicationRecord
     distance = "earth_distance(ll_to_earth(partners.lat, partners.lng), ll_to_earth(%s, %s))" % [
       lat, lng
     ]
+
     Partner
-      .joins(:materials)
-      .where(materials:)
-      .group("partners.id")
-      .having("#{distance} <= partners.operating_radius")
       .select("partners.*, #{distance} AS distance")
+      .where(materials:)
+      .where("#{distance} <= partners.operating_radius")
+      .joins(:materials)
+      .group("partners.id")
   end
 end

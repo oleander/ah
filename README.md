@@ -53,16 +53,12 @@ Where `$2` and `$3` are latitude and longitude parameters for a request `$1`.
                     ON materials.id = requirements.material_id
             WHERE
                 requirements.request_id = $1
-        )
+        ) AND earth_distance(
+          ll_to_earth(partners.lat, partners.lng),
+          ll_to_earth($2, $3)
+        ) <= partners.operating_radius
     GROUP BY
         partners.id
-    HAVING
-        (
-            earth_distance(
-              ll_to_earth(partners.lat, partners.lng),
-              ll_to_earth($2, $3)
-            ) <= partners.operating_radius
-        )
     ORDER BY
         rating DESC,
         distance ASC
