@@ -18,8 +18,8 @@
   * `bundle exec rspec`
 
 * Possible improvements
-  * Joined indexes on relational tables
-  * Geo indexes on `lat` and `lng`
+  * Joined indexes in relational tables
+  * Point indexes on `lat` and `lng`
   * Authentication
   * Caching
 
