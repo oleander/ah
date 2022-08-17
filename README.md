@@ -35,27 +35,27 @@ Where `$2` and `$3` are latitude and longitude parameters for a request `$1`.
           ll_to_earth($2, $3)
         ) AS distance
     FROM
-        "partners"
+        partners
     INNER JOIN
-        "experiences"
-            ON "experiences"."partner_id" = "partners"."id"
+        experiences
+            ON experiences.partner_id = partners.id
     INNER JOIN
-        "materials"
-            ON "materials"."id" = "experiences"."material_id"
+        materials
+            ON materials.id = experiences.material_id
     WHERE
-        "materials"."id" IN (
+        materials.id IN (
             SELECT
-                "materials"."id"
+                materials.id
             FROM
-                "materials"
+                materials
             INNER JOIN
-                "requirements"
-                    ON "materials"."id" = "requirements"."material_id"
+                requirements
+                    ON materials.id = requirements.material_id
             WHERE
-                "requirements"."request_id" = $1
+                requirements.request_id = $1
         )
     GROUP BY
-        "partners"."id"
+        partners.id
     HAVING
         (
             earth_distance(
@@ -67,4 +67,3 @@ Where `$2` and `$3` are latitude and longitude parameters for a request `$1`.
         rating DESC,
         distance ASC
 ```
-
