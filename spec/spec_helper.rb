@@ -1,3 +1,5 @@
+require_relative "../config/environment"
+
 require "rspec"
 require "factory_bot"
 require "faker"
@@ -5,8 +7,6 @@ require "rails/all"
 require "rspec/rails"
 require "database_cleaner"
 require "rspec/collection_matchers"
-
-require_relative "../config/environment"
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods

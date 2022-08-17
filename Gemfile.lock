@@ -54,9 +54,6 @@ GEM
     activerecord (7.0.3.1)
       activemodel (= 7.0.3.1)
       activesupport (= 7.0.3.1)
-    activerecord-postgis-adapter (8.0.1)
-      activerecord (~> 7.0.0)
-      rgeo-activerecord (~> 7.0.0)
     activestorage (7.0.3.1)
       actionpack (= 7.0.3.1)
       activejob (= 7.0.3.1)
@@ -159,10 +156,6 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
-    rgeo (2.4.0)
-    rgeo-activerecord (7.0.1)
-      activerecord (>= 5.0)
-      rgeo (>= 1.0.0)
     rspec (3.11.0)
       rspec-core (~> 3.11.0)
       rspec-expectations (~> 3.11.0)
@@ -186,7 +179,6 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.11.0)
-    sqlite3 (1.4.4)
     strscan (3.0.4)
     thor (1.2.1)
     timeout (0.3.0)
@@ -201,7 +193,6 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
-  activerecord-postgis-adapter
   bootsnap
   database_cleaner
   factory_bot
@@ -214,7 +205,6 @@ DEPENDENCIES
   rspec
   rspec-collection_matchers
   rspec-rails
-  sqlite3 (~> 1.4)
   tzinfo-data
 
 RUBY VERSION
