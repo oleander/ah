@@ -5,7 +5,12 @@ include FactoryBot::Syntax::Methods
 request = create(:request)
 
 # Valid partners within range
-p1 = create(:partner, lng: request.lng, lat: request.lat, operating_radius: 100_000, rating: 1)
+begin
+  p1 = create(:partner, lng: request.lng, lat: request.lat, operating_radius: 100_000, rating: 1)
+rescue ActiveRecord::RecordInvalid
+  abort "Make sure your database is empty before running this script (rails db:reset)"
+end
+
 p2 = create(:partner, lng: request.lng, lat: request.lat, operating_radius: 100_000, rating: 5)
 
 # Slightly futher away, but still within range
