@@ -11,4 +11,5 @@ path = Pathname.new(__FILE__)
 $:.unshift File.expand_path "../..", path.realpath
 
 require "bundler/setup"
-load File.expand_path "../../../../.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/rubocop-1.35.0/exe/rubocop", path.realpath
+load File.expand_path "../../../../.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/rubocop-1.35.0/exe/rubocop",
+                      path.realpath

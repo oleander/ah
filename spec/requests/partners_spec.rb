@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 describe PartnersController, type: :controller do
   let(:json) { JSON(response.body) }
 
