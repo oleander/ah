@@ -1,0 +1,9 @@
+class Partner < ApplicationRecord
+  validates :rating, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
+  validates :operating_radius, numericality: { greater_than_or_equal_to: 0 }
+  # validates :location, presence: true
+  acts_as_geolocated lat: "lat", lng: "lng"
+
+  has_many :experiences, dependent: :destroy
+  has_many :materials, through: :experiences
+end
