@@ -25,14 +25,14 @@
 
 ## Solution in a nutshell
 
-Where `10.0` and `20.0` are placeholder latitude and longitude of a request.
+Where `$2` and `$3` are latitude and longitude parameters for a request `$1`.
 
 ``` sql
     SELECT
         partners.*,
         earth_distance(
           ll_to_earth(partners.lat, partners.lng),
-          ll_to_earth(10.0, 20.0)
+          ll_to_earth($2, $3)
         ) AS distance
     FROM
         "partners"
@@ -60,7 +60,7 @@ Where `10.0` and `20.0` are placeholder latitude and longitude of a request.
         (
             earth_distance(
               ll_to_earth(partners.lat, partners.lng),
-              ll_to_earth(10.0, 20.0)
+              ll_to_earth($2, $3)
             ) <= partners.operating_radius
         )
     ORDER BY
