@@ -3,6 +3,7 @@
 * Requirements
   * Ruby 3.1
   * PostgreSQL 9.3+
+    * With support for the `cube` and `earthdistance` extensions
 
 * Installation
   * `bundle install`
