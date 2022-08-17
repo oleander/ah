@@ -8,17 +8,16 @@ class Request < ApplicationRecord
   has_many :requirements, dependent: :destroy
   has_many :materials, through: :requirements
 
+  # A list of partners that are close to the request location and have the required materials.
+  #
+  # @return [ActiveRecord::Relation<Partner>]
   def partners
-    q = "earth_distance(ll_to_earth(partners.lat, partners.lng), ll_to_earth(%s, %s))" % [lat, lng]
+    distance = "earth_distance(ll_to_earth(partners.lat, partners.lng), ll_to_earth(%s, %s))" % [lat, lng]
     Partner
       .joins(:materials)
       .where(materials: materials)
       .group("partners.id")
-      .having("#{q} <= partners.operating_radius")
-      .select("partners.*, #{q} AS distance")
-  end
-
-  def distance
-    super
+      .having("#{distance} <= partners.operating_radius")
+      .select("partners.*, #{distance} AS distance")
   end
 end
