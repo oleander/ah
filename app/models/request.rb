@@ -13,7 +13,7 @@ class Request < ApplicationRecord
   #
   # @return [ActiveRecord::Relation<Partner>]
   def partners
-    distance = "earth_distance(ll_to_earth(partners.lat, partners.lng), ll_to_earth(%s, %s))" % [
+    distance = "earth_distance(ll_to_earth(partners.lat, partners.lng), ll_to_earth(%f, %f))" % [
       lat, lng
     ]
 
