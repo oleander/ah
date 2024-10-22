@@ -5,8 +5,8 @@ source "https://rubygems.org"
 ruby "3.1.0"
 gem "bootsnap", require: false
 gem "pg"
-gem "puma", "~> 5.0"
-gem "rails", "~> 7.0.3", ">= 7.0.3.1"
+gem "puma", "~> 5.6"
+gem "rails", "~> 7.0.8"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
